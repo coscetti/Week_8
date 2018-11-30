@@ -21,9 +21,21 @@ idx = zeros(size(X,1), 1);
 % Note: You can use a for-loop over the examples to compute this.
 %
 
+m = size(X,1);
 
+dist_matrix = pdist2(X,centroids);
 
-
+for i = 1:m
+  min_dist = 1000;
+  tmp_idx = 0;
+  for j = 1:K
+    if (dist_matrix(i,j) < min_dist)
+      min_dist = dist_matrix(i,j);
+      tmp_idx = j;
+    endif
+  endfor
+  idx(i) = tmp_idx;
+endfor
 
 
 
